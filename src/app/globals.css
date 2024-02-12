@@ -31,3 +31,7 @@ body {
     text-wrap: balance;
   }
 }
+
+.path {
+  stroke-dasharray: 1000;
+}
