@@ -19,7 +19,7 @@ const config = {
       },
       keyframes: {
         dash: {
-          "0%": { strokeDashoffset: 1283.63671875 },
+          "0%": { strokeDashoffset: "var(--scroll-distance)" },
           "100%": { strokeDashoffset: 0 },
         },
       },
