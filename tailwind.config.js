@@ -26,7 +26,7 @@ const config = {
         },
       },
       animation: {
-        "draw-svg": "dash 5s linear forwards",
+        "draw-svg": "dash 2s linear forwards",
       },
     },
   },

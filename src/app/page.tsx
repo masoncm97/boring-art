@@ -1,42 +1,51 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { BoringArt } from "./boring-art";
 import classNames from "classnames";
+import SvgDrawing from "./svg-drawing";
+import { I, Will } from "./boring-art";
+import { motion } from "framer-motion";
 
+const container = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      delayChildren: 0.3,
+      staggerChildren: 0.2,
+    },
+  },
+};
+
+export const item = {
+  hidden: { opacity: 0 },
+  visible: {
+    strokeDashoffset: 0,
+    opacity: 1,
+  },
+};
 export default function Home() {
-  const [length, setLength] = useState(0);
-  const [svgElem, setSvgElem] = useState<SVGSVGElement>();
+  const drawingIndex = useRef(0);
 
-  useEffect(() => {
-    var path = document.querySelector("#squiggle") as SVGPathElement;
-    var svgElem = document.querySelector(".path") as SVGSVGElement;
-    var pathLength;
-    if (path) {
-      console.log(path.getTotalLength());
-      pathLength = path.getTotalLength();
-      setLength(path.getTotalLength());
-    }
-    if (svgElem) {
-      console.log(svgElem);
-      svgElem.style.strokeDasharray = pathLength + " " + pathLength;
-      svgElem.style.strokeDashoffset = `${pathLength}`;
-      setSvgElem(svgElem);
-    }
-    // svgElem.style.transition = "dash 5s linear forwards";
-    // svgElem.style.strokeDashoffset = "0";
-  }, []);
-
-  console.log(length);
-  console.log(svgElem);
-  // animate-draw-svg [--scroll-distance:${length}]
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24 bg-black">
-      <BoringArt
-        className={classNames(
-          length != 0 && svgElem != undefined ? `animate-draw-svg` : "hidden"
-        )}
-      />
+      <motion.div
+        className="flex w-[50vw] h-32 border border-red-500"
+        variants={container}
+        initial="hidden"
+        animate="visible"
+      >
+        <SvgDrawing
+          svgDrawing={<I className={classNames(`animate-draw-svg`)} />}
+          index={0}
+          drawingIndex={drawingIndex}
+        />
+        <SvgDrawing
+          svgDrawing={<Will className={classNames(`animate-draw-svg`)} />}
+          index={1}
+          drawingIndex={drawingIndex}
+        />
+      </motion.div>
     </main>
   );
 }
