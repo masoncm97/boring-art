@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import * as React from "react";
 import { SVGProps } from "react";
 
@@ -7,7 +8,7 @@ interface SVGElementProps {
 }
 export const BoringArt = ({ props, className }: SVGElementProps) => (
   <svg
-    className={className}
+    className={classNames(className, "path")}
     xmlns="http://www.w3.org/2000/svg"
     id="Layer_2"
     data-name="Layer 2"

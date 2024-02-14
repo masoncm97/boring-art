@@ -2,7 +2,13 @@
 const defaultTheme = require("tailwindcss/defaultTheme");
 
 const config = {
+  mode: "jit",
   content: [
+    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
+  purge: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
@@ -14,14 +20,13 @@ const config = {
       ...defaultTheme.screens,
     },
     extend: {
-      animation: {
-        "draw-svg": "dash 5s linear forwards",
-      },
       keyframes: {
         dash: {
-          "0%": { strokeDashoffset: "var(--scroll-distance)" },
           "100%": { strokeDashoffset: 0 },
         },
+      },
+      animation: {
+        "draw-svg": "dash 5s linear forwards",
       },
     },
   },
