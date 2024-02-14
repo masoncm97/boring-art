@@ -12,21 +12,18 @@ export default function Home() {
     if (path) {
       console.log(path.getTotalLength());
       var pathLength = path.getTotalLength();
-      path.style.strokeDasharray = pathLength + " " + pathLength;
+      // path.style.strokeDasharray = pathLength + " " + pathLength;
+      path.getBoundingClientRect();
       setLength(path.getTotalLength());
     }
   }, []);
 
   console.log(length);
-
+  // animate-draw-svg [--scroll-distance:${length}]
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24 bg-black">
       <BoringArt
-        className={classNames(
-          length != 0
-            ? `animate-draw-svg [--scroll-distance:${length}]`
-            : "hidden"
-        )}
+        className={classNames(length != 0 ? `path block` : "hidden")}
       />
     </main>
   );
