@@ -15,7 +15,6 @@ export const BoringArt = ({ className }: SVGElementProps) => {
   const themeState = useContext(ThemeContext);
   const currentTheme = themeState?.currentTheme?.themeType;
   const deviceSize: DeviceSize | undefined = useDeviceSize();
-  console.log(deviceSize);
 
   return (
     <motion.svg
