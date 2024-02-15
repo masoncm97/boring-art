@@ -12,6 +12,10 @@ export interface Theme {
   themeType: ThemeType;
 }
 
+// export interface ThemeState {
+//   currentTheme: Theme;
+// }
+
 interface ThemeProviderProps {
   children: React.ReactNode;
 }
@@ -32,7 +36,7 @@ export default function ThemeProvider({ children }: ThemeProviderProps) {
     : { themeType: ThemeType.Light };
 
   return (
-    <ThemeContext.Provider value={currentTheme}>
+    <ThemeContext.Provider value={{ currentTheme: currentTheme }}>
       <div
         className={classNames(
           currentTheme.themeType == ThemeType.Dark ? "bg-black" : "bg-white",
