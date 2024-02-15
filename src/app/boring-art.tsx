@@ -2,12 +2,21 @@ import classNames from "classnames";
 import { motion } from "framer-motion";
 import * as React from "react";
 import { paths, ttds } from "./path-data";
+import { useContext } from "react";
+import { ThemeContext, ThemeType } from "./ThemeProvider";
+import useDeviceSize from "@/hooks/useDeviceSize";
+import { DeviceSize } from "@/types/devices";
 
 interface SVGElementProps {
   className?: string;
 }
 
 export const BoringArt = ({ className }: SVGElementProps) => {
+  const themeState = useContext(ThemeContext);
+  const currentTheme = themeState?.currentTheme?.themeType;
+  const deviceSize: DeviceSize | undefined = useDeviceSize();
+  console.log(deviceSize);
+
   return (
     <motion.svg
       className={classNames(className, "flex")}
@@ -16,16 +25,18 @@ export const BoringArt = ({ className }: SVGElementProps) => {
       animate="visible"
     >
       <defs>
-        <style>
-          {
-            ".cls-1{fill:none;stroke:#000;stroke-linecap:round;stroke-miterlimit:10;stroke-width:2px}"
-          }
-        </style>
+        <style>{".cls-1{stroke-linecap:round;stroke-miterlimit:10}"}</style>
       </defs>
       {paths.map((path, index) => (
         <motion.path
           key={index}
-          className="cls-1"
+          className={classNames(
+            currentTheme == ThemeType.Dark ? "stroke-white" : "stroke-black",
+            deviceSize && deviceSize >= DeviceSize.sm
+              ? "stroke-2"
+              : "stroke-[3]",
+            "fill-none"
+          )}
           d={path}
           variants={draw}
           custom={{
