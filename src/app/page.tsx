@@ -1,26 +1,27 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { AnimatedPath } from "./AnimatedPath";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { BoringArt } from "./boring-art";
 
 export default function Home() {
-  const [svgs, setSvgs] = useState<JSX.Element[]>([<AnimatedPath key={0} />]);
-  const initial = useRef<boolean>(true);
+  // const svgs = useRef<JSX.Element[]>([<BoringArt />]);
+  const [svgs, setSvgs] = useState<JSX.Element[]>([<BoringArt key={0} />]);
+  const lastClick = useRef(0);
   const scrollToRef = useRef<HTMLDivElement>(null);
 
-  const drawSvg = () => {
-    setSvgs((prevSvgs) => {
-      const newSvg = <AnimatedPath key={prevSvgs.length + 1} />;
-      return [...prevSvgs, newSvg];
-    });
-  };
+  const drawSvg = useCallback(() => {
+    const now = Date.now();
+    if (now - lastClick.current > 100) {
+      lastClick.current = now;
+      setSvgs((prevSvgs) => {
+        const newSvg = <BoringArt key={prevSvgs.length + 1} />;
+        return [...prevSvgs, newSvg];
+      });
+    }
+  }, []);
 
   useEffect(() => {
-    let intervalId: NodeJS.Timeout;
-    if (initial) {
-      intervalId = setInterval(drawSvg, 23500);
-      initial.current = false;
-    }
+    const intervalId = setInterval(drawSvg, 23500);
     return () => clearInterval(intervalId);
   }, []);
 

@@ -1,6 +1,14 @@
 "use client";
 
-import { createContext } from "react";
+import {
+  createContext,
+  Dispatch,
+  SetStateAction,
+  useCallback,
+  useEffect,
+  useReducer,
+  useState,
+} from "react";
 import classNames from "classnames";
 
 export enum ThemeType {
@@ -12,16 +20,16 @@ export interface Theme {
   themeType: ThemeType;
 }
 
-// export interface ThemeState {
-//   currentTheme: Theme;
-// }
+export interface ThemeState {
+  currentTheme: Theme;
+}
 
 interface ThemeProviderProps {
   children: React.ReactNode;
 }
 
-export const ThemeContext = createContext<Theme>({
-  themeType: ThemeType.Light,
+export const ThemeContext = createContext<ThemeState>({
+  currentTheme: { themeType: ThemeType.Light },
 });
 
 const getIsDark = () => {
