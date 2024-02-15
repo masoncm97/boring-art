@@ -7,57 +7,21 @@ interface SVGElementProps {
   className?: string;
 }
 
-const defs = (
-  <defs>
-    <style>
-      {
-        ".cls-1{fill:none;stroke:#fff;stroke-linecap:round;stroke-miterlimit:10;stroke-width:3px}"
-      }
-    </style>
-  </defs>
-);
-
-const draw = {
-  hidden: { pathLength: 0, opacity: 0 },
-  visible: ({
-    sumPreviousttd,
-    ttd,
-  }: {
-    sumPreviousttd: number;
-    ttd: number;
-  }) => {
-    const delay = sumPreviousttd * 0.5;
-    const duration = ttd * 0.5;
-    return {
-      pathLength: 1,
-      opacity: 1,
-      transition: {
-        pathLength: { delay, type: "tween", duration },
-        opacity: { delay, duration: 0.01 },
-      },
-    };
-  },
-};
-
-function sumBeforeIndex(array: number[], index: number): number {
-  return array.reduce((acc, cur, curIndex) => {
-    if (curIndex < index) {
-      return acc + cur;
-    } else {
-      return acc;
-    }
-  }, 0);
-}
-
 export const BoringArt = ({ className }: SVGElementProps) => {
   return (
     <motion.svg
-      className={classNames(className, "border border-red-500 flex")}
+      className={classNames(className, "flex")}
       viewBox="0 0 1135.38 93.54"
       initial="hidden"
       animate="visible"
     >
-      {defs}
+      <defs>
+        <style>
+          {
+            ".cls-1{fill:none;stroke:#000;stroke-linecap:round;stroke-miterlimit:10;stroke-width:2px}"
+          }
+        </style>
+      </defs>
       {paths.map((path, index) => (
         <motion.path
           key={index}
@@ -74,3 +38,35 @@ export const BoringArt = ({ className }: SVGElementProps) => {
     </motion.svg>
   );
 };
+
+const draw = {
+  hidden: { pathLength: 0, opacity: 0 },
+  visible: ({
+    sumPreviousttd,
+    ttd,
+  }: {
+    sumPreviousttd: number;
+    ttd: number;
+  }) => {
+    const delay = sumPreviousttd * 0.7;
+    const duration = ttd * 0.7;
+    return {
+      pathLength: 1,
+      opacity: 1,
+      transition: {
+        pathLength: { delay, duration },
+        opacity: { delay, duration: 0.01 },
+      },
+    };
+  },
+};
+
+function sumBeforeIndex(array: number[], index: number): number {
+  return array.reduce((acc, cur, curIndex) => {
+    if (curIndex < index) {
+      return acc + cur;
+    } else {
+      return acc;
+    }
+  }, 0);
+}

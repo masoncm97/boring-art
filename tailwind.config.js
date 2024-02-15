@@ -14,6 +14,10 @@ const config = {
       ...defaultTheme.screens,
     },
     extend: {
+      colors: {
+        offwhite: "#ece5df",
+        lemon: "#ffea14",
+      },
       keyframes: {
         dash: {
           "100%": { strokeDashoffset: 0 },
