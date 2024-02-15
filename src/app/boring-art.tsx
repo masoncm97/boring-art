@@ -24,7 +24,7 @@ export const BoringArt = ({ className }: SVGElementProps) => {
       animate="visible"
     >
       <defs>
-        <style>{".cls-1{stroke-linecap:round;stroke-miterlimit:10}"}</style>
+        <style>{".path{stroke-linecap:round;stroke-miterlimit:10}"}</style>
       </defs>
       {paths.map((path, index) => (
         <motion.path
@@ -34,7 +34,7 @@ export const BoringArt = ({ className }: SVGElementProps) => {
             deviceSize && deviceSize >= DeviceSize.sm
               ? "stroke-2"
               : "stroke-[3]",
-            "fill-none"
+            "path fill-none"
           )}
           d={path}
           variants={draw}
@@ -42,7 +42,6 @@ export const BoringArt = ({ className }: SVGElementProps) => {
             sumPreviousttd: sumBeforeIndex(ttds, index),
             ttd: ttds[index],
           }}
-          id={`path_${index}`}
         />
       ))}
     </motion.svg>
