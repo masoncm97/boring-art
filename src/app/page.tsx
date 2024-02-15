@@ -21,7 +21,7 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    const intervalId = setInterval(drawSvg, 23000);
+    const intervalId = setInterval(drawSvg, 23500);
     return () => clearInterval(intervalId);
   }, []);
 
