@@ -32,7 +32,7 @@ export default function Home() {
   }, [svgs]);
 
   return (
-    <main className="scroll-container min-h-screen flex-col items-center justify-between p-6 md:p-24 xl:px-64">
+    <main className="scroll-container min-h-screen flex-col items-center justify-between p-4 sm:p-6 md:p-24 xl:px-64">
       {svgs.map((element) => element)}
       <div ref={scrollToRef} />
     </main>
