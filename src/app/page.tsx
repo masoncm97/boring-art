@@ -27,7 +27,10 @@ export default function Home() {
 
   useEffect(() => {
     if (scrollToRef.current) {
-      scrollToRef.current.scrollIntoView({ behavior: "smooth", block: "end" });
+      scrollToRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
     }
   }, [svgs]);
 
