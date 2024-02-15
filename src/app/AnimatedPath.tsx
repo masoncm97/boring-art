@@ -7,13 +7,9 @@ import { ThemeContext, ThemeType } from "./ThemeProvider";
 import useDeviceSize from "@/hooks/useDeviceSize";
 import { DeviceSize } from "@/types/devices";
 
-interface SVGElementProps {
-  className?: string;
-}
-
-export const BoringArt = ({ className }: SVGElementProps) => {
-  const themeState = useContext(ThemeContext);
-  const currentTheme = themeState?.currentTheme?.themeType;
+export const AnimatedPath = ({ className }: { className?: string }) => {
+  const theme = useContext(ThemeContext);
+  const themeType = theme?.themeType;
   const deviceSize: DeviceSize | undefined = useDeviceSize();
 
   return (
@@ -30,7 +26,7 @@ export const BoringArt = ({ className }: SVGElementProps) => {
         <motion.path
           key={index}
           className={classNames(
-            currentTheme == ThemeType.Dark ? "stroke-white" : "stroke-black",
+            themeType == ThemeType.Dark ? "stroke-white" : "stroke-black",
             deviceSize && deviceSize >= DeviceSize.sm
               ? "stroke-2"
               : "stroke-[3]",

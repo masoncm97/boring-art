@@ -13,20 +13,6 @@ const config = {
       xs: "475px",
       ...defaultTheme.screens,
     },
-    extend: {
-      colors: {
-        offwhite: "#ece5df",
-        lemon: "#ffea14",
-      },
-      keyframes: {
-        dash: {
-          "100%": { strokeDashoffset: 0 },
-        },
-      },
-      animation: {
-        "draw-svg": "dash 2s linear forwards",
-      },
-    },
   },
   plugins: [],
 };
