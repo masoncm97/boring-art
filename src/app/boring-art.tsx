@@ -12,8 +12,8 @@ interface SVGElementProps {
 }
 
 export const BoringArt = ({ className }: SVGElementProps) => {
-  const themeState = useContext(ThemeContext);
-  const currentTheme = themeState?.currentTheme?.themeType;
+  const theme = useContext(ThemeContext);
+  const currentTheme = theme?.themeType;
   const deviceSize: DeviceSize | undefined = useDeviceSize();
 
   return (
