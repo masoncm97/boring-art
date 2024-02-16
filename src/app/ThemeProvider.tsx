@@ -16,6 +16,10 @@ export enum ThemeType {
   Dark,
 }
 
+export interface ThemeState {
+  currentTheme: Theme;
+}
+
 export interface Theme {
   themeType: ThemeType;
 }
@@ -34,7 +38,7 @@ export const ThemeContext = createContext<ThemeState>({
 
 const getIsDark = () => {
   const hours = new Date().getHours();
-  return hours < 7 || hours > 19;
+  return hours < 7 || hours > 18;
 };
 
 export default function ThemeProvider({ children }: ThemeProviderProps) {
