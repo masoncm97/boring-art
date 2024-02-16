@@ -1,9 +1,9 @@
 import classNames from "classnames";
 import { motion } from "framer-motion";
 import * as React from "react";
-import { paths, ttds } from "./path-data";
+import { paths, ttds } from "../data/path-data";
 import { useContext } from "react";
-import { ThemeContext, ThemeType } from "./ThemeProvider";
+import { ThemeContext, ThemeType } from "../providers/ThemeProvider";
 import useDeviceSize from "@/hooks/useDeviceSize";
 import { DeviceSize } from "@/types/devices";
 
@@ -11,7 +11,7 @@ interface SVGElementProps {
   className?: string;
 }
 
-export const BoringArt = ({ className }: SVGElementProps) => {
+export const PathDrawing = ({ className }: SVGElementProps) => {
   const theme = useContext(ThemeContext);
   const currentTheme = theme?.themeType;
   const deviceSize: DeviceSize | undefined = useDeviceSize();

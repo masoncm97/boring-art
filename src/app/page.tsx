@@ -1,16 +1,16 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { BoringArt } from "./boring-art";
+import { PathDrawing } from "../components/PathDrawing";
 
 export default function Home() {
-  const [svgs, setSvgs] = useState<JSX.Element[]>([<BoringArt key={0} />]);
+  const [svgs, setSvgs] = useState<JSX.Element[]>([<PathDrawing key={0} />]);
   const initial = useRef(true);
   const scrollToRef = useRef<HTMLDivElement>(null);
 
   const drawSvg = useCallback(() => {
     setSvgs((prevSvgs) => {
-      const newSvg = <BoringArt key={prevSvgs.length + 1} />;
+      const newSvg = <PathDrawing key={prevSvgs.length + 1} />;
       return [...prevSvgs, newSvg];
     });
   }, []);
