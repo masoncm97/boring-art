@@ -1,14 +1,6 @@
 "use client";
 
-import {
-  createContext,
-  Dispatch,
-  SetStateAction,
-  useCallback,
-  useEffect,
-  useReducer,
-  useState,
-} from "react";
+import { createContext } from "react";
 import classNames from "classnames";
 
 export enum ThemeType {
@@ -16,17 +8,9 @@ export enum ThemeType {
   Dark,
 }
 
-// export interface ThemeState {
-//   currentTheme: Theme;
-// }
-
 export interface Theme {
   themeType: ThemeType;
 }
-
-// export interface ThemeState {
-//   currentTheme: Theme;
-// }
 
 interface ThemeProviderProps {
   children: React.ReactNode;
